@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
+          integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" 
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../Home/style.css">
+    <link rel="stylesheet" href="./style.css">
+    <title>Store - Cart</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="../Home/index.html" class="back-btn">
+                <i class="fa-solid fa-arrow-left"></i> Back
+            </a>
+        </div>
+        <div class="cart-total">
+            <span id="cartCount">0 items</span>
+            <div class="total-price">$0.00</div>
+            <button id="buyAllBtn" class="buy-all-btn" disabled>Buy All</button>
+        </div>
+    </nav>
+
+    <main class="cart-container">
+        <div id="emptyCart" class="empty-state hidden">
+            <i class="fa-solid fa-shopping-cart fa-5x"></i>
+            <h2>Your cart is empty</h2>
+            <p>Add some products from home page!</p>
+            <a href="../Home/index.html" class="btn-primary">Shop Now</a>
+        </div>
+        <div id="cartItemsList" class="cart-items"></div>
+
+    </main>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Checkout</h2>
+                <button id="closeModal" class="close-btn">&times;</button>
+            </div>
+            <form id="paymentForm">
+                <div class="form-group">
+                    <label for="userName">Full Name *</label>
+                    <input type="text" id="userName" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="otp">OTP Verification *</label>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <input type="tel" id="otp" maxlength="6" required>
+                        <button type="button" id="sendOtpBtn">Send OTP</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address">Delivery Address *</label>
+                    <textarea id="address" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Payment Method *</label>
+                    <div class="payment-options">
+                        <label><input type="radio" name="payment" value="online" required> Online</label>
+                        <label><input type="radio" name="payment" value="card" required> Card</label>
+                        <label><input type="radio" name="payment" value="bank" required> Bank Transfer</label>
+                        <label><input type="radio" name="payment" value="cod" required> Cash on Delivery</label>
+                    </div>
+                </div>
+                <div id="emiOption" class="form-group hidden">
+                    <label>
+                        <input type="checkbox" id="emi"> EMI Option (for electronics)
+                    </label>
+                </div>
+                <button type="submit" class="btn-primary full-width" id="placeOrderBtn">Place Order</button>
+            </form>
+            <!-- Order Bill -->
+            <div id="orderBill" class="bill-section hidden">
+                <h3>Order Bill</h3>
+                <div id="billDetails"></div>
+                <button onclick="printBill()" class="btn-primary full-width">Print Bill</button>
+                <button id="closeBill" class="btn-secondary full-width">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+
